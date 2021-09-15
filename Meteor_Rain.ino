@@ -10,6 +10,8 @@ void setup()
 
 void loop() {
   meteorRain(0xff,0xff,0xff,10, 64, true, 30);
+  Sparkle(0xff, 0xff, 0xff, 0);
+  SnowSparkle(0x10, 0x10, 0x10, 20, random(100,1000));
 }
 
 void meteorRain(byte red, byte green, byte blue, byte meteorSize, byte meteorTrailDecay, boolean meteorRandomDecay, int SpeedDelay) {  
@@ -90,4 +92,24 @@ void setAll(byte red, byte green, byte blue) {
     setPixel(i, red, green, blue);
   }
   showStrip();
+}
+
+void Sparkle(byte red, byte green, byte blue, int SpeedDelay) {
+  int Pixel = random(NUM_LEDS);
+  setPixel(Pixel,red,green,blue);
+  showStrip();
+  delay(SpeedDelay);
+  setPixel(Pixel,0,0,0);
+}
+
+void SnowSparkle(byte red, byte green, byte blue, int SparkleDelay, int SpeedDelay) {
+  setAll(red,green,blue);
+ 
+  int Pixel = random(NUM_LEDS);
+  setPixel(Pixel,0xff,0xff,0xff);
+  showStrip();
+  delay(SparkleDelay);
+  setPixel(Pixel,red,green,blue);
+  showStrip();
+  delay(SpeedDelay);
 }
